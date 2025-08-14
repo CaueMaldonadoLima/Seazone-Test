@@ -122,9 +122,9 @@
 }
 
 :root {
-  --primary: #FC6058;
+  --accent: #FC6058;
   --secondary: #9ddcd2;
-  --accent: #7689ce;
+  --primary: #7689ce;
   --background: #fcf7f7;
   --foreground: #0f0605;
 }
