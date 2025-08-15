@@ -1,9 +1,8 @@
-import NavigationBar from "@/components/navigationBar";
+import HomePage from "@/components/pagesComponents/homePage";
 
 export default function Home() {
+
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between bg-background text-foreground">
-			<NavigationBar />
-		</main>
+		<HomePage />
 	);
 }
