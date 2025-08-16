@@ -31,16 +31,16 @@ export default function NavigationBar({ filters, setFilters, onApplyFilters, onC
     return (
         <nav className="top flex flex-row gap-8 bg-white items-center justify-center h-max w-full px-8 shadow-lg ">
             <div className="flex w-full flex-col gap-2 items-center justify-center"> 
-                <div className='flex w-full flex-row gap-2 items-center justify-center'>
-                    <p className="text-xl font-bold">Cauê Imóveis</p>
+                <div className='flex w-full flex-col sm:flex-row gap-2 items-center justify-center'>
+                    <p className="text-xl font-bold hidden sm:block">Cauê Imóveis</p>
                      <Input
                         placeholder="Buscar imóveis pelo título"
-                        className="bg-white my-8 h-10 rounded-full border-black/40 focus:outline-none focus:ring-0 focus:border-transparent"
+                        className="bg-white mt-4 sm:mt-0 sm:my-8 h-10 rounded-full border-black/40 focus:outline-none focus:ring-0 focus:border-transparent"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                     <Dialog>
-                        <DialogTrigger title='Filtrar Busca' className="h-10 w-12 items-center justify-center flex rounded-full bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 cursor-pointer active:scale-95 transition-transform">
+                        <DialogTrigger title='Filtrar Busca' className="h-10 w-full sm:w-12 items-center justify-center flex rounded-full bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 cursor-pointer active:scale-95 transition-transform">
                             <ListFilter className='text-font-base'/>
                         </DialogTrigger>
                         <DialogContent>
@@ -65,7 +65,7 @@ export default function NavigationBar({ filters, setFilters, onApplyFilters, onC
                             </div>
                         </DialogContent>
                     </Dialog>
-                    <Button variant={"default"} className="h-10 px-6 rounded-full" onClick={() => {
+                    <Button variant={"default"} className="text-white h-10 w-full sm:w-26 px-6 rounded-full mb-4 sm:mb-0" onClick={() => {
                         onApplyFilters()
                         setSearch("")
                     }}>Buscar</Button>

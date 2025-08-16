@@ -68,8 +68,8 @@ export default function PropertyPage({ property }: PropertyPageProps) {
 					</div>
 				</div>
 			</nav>
-            <div className='w-full flex flex-row px-32 py-12 items-start gap-6'>
-                <div className='flex flex-col'>
+            <div className='w-full flex flex-col md:flex-row md:px-32 py-12 items-center md:items-start gap-4 md:gap-6'>
+                <div className='flex flex-col items-center md:items-start'>
                     <Carousel className="w-full max-w-2xl">
                         <CarouselContent>
                             {property.images.map((_, index) => (
@@ -87,7 +87,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                         <CarouselPrevious className='bg-white'/>
                         <CarouselNext className='bg-white'/>
                     </Carousel>
-                    <Card className='w-full max-w-2xl bg-white mt-4 p-4 text-lg gap-2 hover:scale-105 transition-transform'>
+                    <Card className='w-[95%] md:w-full max-w-2xl bg-white mt-4 p-4 text-lg gap-2 hover:scale-105 transition-transform'>
                         <div className='pb-4 px-4 flex flex-row items-center justify-between'>
                             <p className='text-xl font-semibold'>O que este lugar oferece</p>
                         </div>
