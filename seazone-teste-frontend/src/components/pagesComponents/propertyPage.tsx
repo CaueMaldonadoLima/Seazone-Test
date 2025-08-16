@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,6 +15,7 @@ import { formatHostSince } from '../hostingDate';
 import { BadgeCheck, BadgeX, BedDouble, CircleDollarSign, PersonStanding, Ruler, Toilet } from 'lucide-react';
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Button } from '../ui/button';
+import { toast } from 'sonner';
 
 interface Property {
     id: number;
@@ -60,7 +62,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
 			<nav className="top flex flex-row gap-8 bg-white items-center justify-center h-max w-full px-8 shadow-lg ">
 				<div className="flex w-full flex-col gap-2 items-center justify-center"> 
 					<div className='flex w-full flex-row gap-2 items-center justify-between'>
-						<Link title='Voltar à tela inicial' href='/' className='text-xl font-bold py-9'><p>Seazone</p></Link>
+						<Link title='Voltar à tela inicial' href='/' className='text-xl font-bold py-9'><p>Cauê Imóveis</p></Link>
                         <p className='text-2xl font-semibold'>{property.title}</p>
                         <br />
 					</div>
@@ -85,23 +87,23 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                         <CarouselPrevious className='bg-white'/>
                         <CarouselNext className='bg-white'/>
                     </Carousel>
-                    <Card className='w-full max-w-2xl bg-white mt-4 p-4 text-lg gap-2'>
+                    <Card className='w-full max-w-2xl bg-white mt-4 p-4 text-lg gap-2 hover:scale-105 transition-transform'>
                         <div className='pb-4 px-4 flex flex-row items-center justify-between'>
                             <p className='text-xl font-semibold'>O que este lugar oferece</p>
                         </div>
                         <hr />
-                        <p className='flex flex-row gap-2 px-2 pt-2'><PersonStanding /> {` Até ${property.maxGuests} pessoas `}</p>
-                        <p className='flex flex-row gap-2 px-2'><CircleDollarSign />{` R$${property.pricePerNight},00 p/ noite`}</p>
-                        <p className='flex flex-row gap-2 px-2'><Toilet /> {property.bathrooms} banheiros</p>
-                        <p className='flex flex-row gap-2 px-2'><BedDouble /> {property.bedrooms} quartos</p>
-                        <p className='flex flex-row gap-2 px-2'><Ruler /> {property.sizeM2} m²</p>
+                        <p className='flex flex-row items-center gap-2 px-2 pt-2'><PersonStanding /> {` Até ${property.maxGuests} pessoas `}</p>
+                        <p className='flex flex-row items-center gap-2 px-2'><CircleDollarSign />{` R$${property.pricePerNight},00 p/ noite`}</p>
+                        <p className='flex flex-row items-center gap-2 px-2'><Toilet /> {property.bathrooms} banheiros</p>
+                        <p className='flex flex-row items-center gap-2 px-2'><BedDouble /> {property.bedrooms} quartos</p>
+                        <p className='flex flex-row items-center gap-2 px-2'><Ruler /> {property.sizeM2} m²</p>
                         {property.isAvailable ? (
-                            <p className='flex flex-row gap-2 px-2 pb-2'> 
+                            <p className='flex flex-row items-center gap-2 px-2 pb-2'> 
                                 <BadgeCheck />
                                 Disponível
                             </p>
                         ) : (
-                            <p className='flex flex-row gap-2 px-2 pb-2'> 
+                            <p className='flex flex-row items-center gap-2 px-2 pb-2'> 
                                 <BadgeX />
                                 Indisponível
                             </p>
@@ -109,7 +111,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                     </Card>
                 </div>
                 <div className='flex flex-col gap-4 px-12'>
-                    <Card className='w-full max-w-2xl bg-white !px-0'>
+                    <Card className='w-full max-w-2xl bg-white !px-0 hover:scale-105 transition-transform'>
                         <CardContent className='px-0'>
                             <div className='pb-4 px-4 flex flex-row items-center justify-between'>
                                <p className='text-xl font-semibold'>Sobre este lugar</p>
@@ -120,7 +122,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                              
                         </CardContent>
                     </Card>
-                    <Card className='w-full px-6 flex flex-row max-w-2xl bg-white items-center gap-2 justify-center'>
+                    <Card className='w-full px-6 flex flex-row max-w-2xl bg-white items-center gap-2 justify-center hover:scale-105 transition-transform'>
                         <div className='flex flex-row items-center justify-center'>
                             <div className='flex flex-col items-center gap-2'>
                                 <p className='text-xl font-bold'>
@@ -134,7 +136,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                             </div>
                         </div>
                     </Card>
-                    <Card className='w-full px-6 flex flex-row max-w-2xl bg-white items-center gap-2 justify-center'>
+                    <Card className='w-full px-6 flex flex-row max-w-2xl bg-white items-center gap-2 justify-center hover:scale-105 transition-transform'>
                         <Avatar className='h-12 w-12'>
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
@@ -144,16 +146,31 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                             <p className='px-4'>{property.host.superhost ? '(Superhost) · ' : ''} Hospedando há {formatHostSince(property.host.since)}</p>
                         </div>
                     </Card>
-                    <Dialog>
+                    <Button className='py-8 text-lg rounded-full active:scale-95 transition-transform shadow-lg hover:bg-primary/90 text-white'
+                        onClick={() =>
+                            toast.success("Reserva realizada com sucesso!", {
+                                description: "",
+                                action: {
+                                    label: "Fechar",
+                                    onClick: () => console.log("Fechar"),
+                                },
+                                
+                            })
+                        }
+                    >Simular reserva</Button>
+                    {/* <Dialog>
                         <DialogTrigger className='w-full rounded-full bg-primary text-lg shadow-lg text-white font-semibold py-4 active:scale-95 transition-transform hover:bg-primary/90 cursor-pointer'>
                             Simular Reserva
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Simular Reserva</DialogTitle>
+                                <DialogTitle>Reserva </DialogTitle>
                             </DialogHeader>
-                            
-                            <div className="w-full flex items-center justify-end gap-2">
+                            <div>
+                                <p className='text-lg'></p>
+                                <p className='text-sm text-gray-500'>Você pode enviar uma mensagem diretamente para o anfitrião através do botão abaixo.</p>
+                            </div>
+                            <div className="w-full flex items-center justify-center gap-2">
                                 <DialogClose asChild>
                                     <Button variant="secondary" className="h-10 px-6 rounded-full ml-2">
                                         Cancelar
@@ -166,7 +183,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                                 </DialogClose>
                             </div>
                         </DialogContent>
-                    </Dialog>
+                    </Dialog> */}
                 </div>
             </div>
 		</main>

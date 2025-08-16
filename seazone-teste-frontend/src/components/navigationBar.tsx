@@ -32,7 +32,7 @@ export default function NavigationBar({ filters, setFilters, onApplyFilters, onC
         <nav className="top flex flex-row gap-8 bg-white items-center justify-center h-max w-full px-8 shadow-lg ">
             <div className="flex w-full flex-col gap-2 items-center justify-center"> 
                 <div className='flex w-full flex-row gap-2 items-center justify-center'>
-                    <p className="text-xl font-bold">Seazone</p>
+                    <p className="text-xl font-bold">Cauê Imóveis</p>
                      <Input
                         placeholder="Buscar imóveis pelo título"
                         className="bg-white my-8 h-10 rounded-full border-black/40 focus:outline-none focus:ring-0 focus:border-transparent"

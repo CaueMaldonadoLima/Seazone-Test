@@ -3,6 +3,9 @@ import NavigationBar from "@/components/navigationBar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import HomePageSkeleton from "./homePageSkeleton";
+import ErrorPage from "./errorPage";
+import Image from "next/image";
 
 interface Property {
     id: number;
@@ -85,8 +88,31 @@ export default function HomePage() {
         setFilteredProperties(properties);
     };
 
-	if (loading) return <p>Carregando...</p>;
-	if (error) return <p>Erro: {error}</p>;
+	if (loading) {
+        return (
+            <main className="flex min-h-screen flex-col items-center bg-background text-foreground">
+            <NavigationBar 
+                filters={filters}
+                setFilters={setFilters}
+                onApplyFilters={applyFilters}
+                onClearFilters={clearFilters}
+            />
+            <div className="w-full flex flex-col p-12">
+                <div className="flex flex-row items-center mb-4">
+                <p className="text-2xl items-center">Lista de imóveis</p>
+                <p className="pt-2 px-2"><ChevronRight size={20} /></p>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-5 md:grid-cols-7 gap-2 w-full">
+                {Array.from({ length: 30 }).map((_, i) => (
+                    <HomePageSkeleton key={i} />
+                ))}
+                </div>
+            </div>
+            </main>
+        )
+    }
+
+	if (error) return <ErrorPage error={new Error(error || "Erro desconhecido")}/>
 
 
 	return (
@@ -110,10 +136,12 @@ export default function HomePage() {
                     ) : (
                         filteredProperties.map((property: Property, index: number) => (
                             <Link href={`/properties/${property.id}`} key={index} className="p-1">
-                                <img
+                                <Image
                                     src={property.images[0]}
                                     alt={property.title}
-                                    className="w-full h-auto rounded-lg mb-2"
+                                    width={800}
+                                    height={600}
+                                    className="w-full h-auto rounded-lg mb-2 active:scale-95 transition-transform hover:shadow-lg cursor-pointer hover:scale-105"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
                                         target.src = "https://picsum.photos/800/600?blur=2";
@@ -121,8 +149,12 @@ export default function HomePage() {
                                 />
                                 <p className="font-semibold text-sm">{property.title}</p>
                                 <p className="font-semibold text-xs text-gray-700">
-                                    {`R$${property.pricePerNight},00 por noite · ★${property.rating}`}
+                                    {`R$${property.pricePerNight},00 por noite`}
                                 </p>
+                                <p className="font-semibold text-xs text-gray-700">
+                                    {`★${property.rating} (${property.reviewsCount} avaliações)`}
+                                </p>
+                                
                                 <p className="font-semibold text-xs text-gray-700">
                                     {property.location.city}, {property.location.state}, {property.location.country}
                                 </p>

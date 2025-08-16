@@ -35,3 +35,4 @@ export default async function Property({ params }: { params: Promise<{ id: strin
 
 	return <PropertyPage property={property} />;
 }
+
