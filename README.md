@@ -5,6 +5,26 @@ A aplicação permite filtrar propriedades por diversos critérios e visualizar 
 
 ## Instalação e Execução
 
+
+# Back-end
+1. Clone o repositório:
+```bash
+git clone https://github.com/seazone-tech/mock-api-temporada.git
+```
+2. Entre na pasta do projeto:
+```bash
+cd .\mock-api-temporada
+```
+3. Instale as dependências:
+```bash
+npm install
+```
+4. Inicie a aplicação:
+```bash
+npm start
+```
+
+# Front-end
 1. Clone o repositório:
 ```bash
 git clone https://github.com/CaueMaldonadoLima/Seazone-Test.git
