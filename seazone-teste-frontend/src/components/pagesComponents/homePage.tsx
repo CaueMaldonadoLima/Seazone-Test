@@ -109,26 +109,26 @@ export default function HomePage() {
                         </div>
                     ) : (
                         filteredProperties.map((property: Property, index: number) => (
-                            <Link href={"#"} key={index} className="p-1">
-                            <img
-                                src={property.images[0]}
-                                alt={property.title}
-                                className="w-full h-auto rounded-lg mb-2"
-                                onError={(e) => {
-                                    const target = e.currentTarget as HTMLImageElement;
-                                    target.src = "https://picsum.photos/800/600?blur=2";
-                                }}
-                            />
-                            <p className="font-semibold text-sm">{property.title}</p>
-                            <p className="font-semibold text-xs text-gray-700">
-                                {`R$${property.pricePerNight},00 por noite · ★${property.rating}`}
-                            </p>
-                            <p className="font-semibold text-xs text-gray-700">
-                                {property.location.city}, {property.location.state}, {property.location.country}
-                            </p>
-                            <p className="font-semibold text-xs text-gray-700">
-                                {property.isAvailable ? 'Disponível' : 'Indisponível'}
-                            </p>
+                            <Link href={`/properties/${property.id}`} key={index} className="p-1">
+                                <img
+                                    src={property.images[0]}
+                                    alt={property.title}
+                                    className="w-full h-auto rounded-lg mb-2"
+                                    onError={(e) => {
+                                        const target = e.currentTarget as HTMLImageElement;
+                                        target.src = "https://picsum.photos/800/600?blur=2";
+                                    }}
+                                />
+                                <p className="font-semibold text-sm">{property.title}</p>
+                                <p className="font-semibold text-xs text-gray-700">
+                                    {`R$${property.pricePerNight},00 por noite · ★${property.rating}`}
+                                </p>
+                                <p className="font-semibold text-xs text-gray-700">
+                                    {property.location.city}, {property.location.state}, {property.location.country}
+                                </p>
+                                <p className="font-semibold text-xs text-gray-700">
+                                    {property.isAvailable ? 'Disponível' : 'Indisponível'}
+                                </p>
                             </Link>
                         ))
                     )}
