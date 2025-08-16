@@ -56,28 +56,52 @@ export default function HomePage() {
 		.finally(() => setLoading(false));
 	}, []);
 
+    function normalizeString(str: string) {
+        return str
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, ""); 
+    }
+
     const applyFilters = () => {
         let filtered = [...properties];
 
         if (filters.title) {
-            filtered = filtered.filter(p =>
-                p.title.toLowerCase().includes(filters.title.toLowerCase())
-            );
+            const titleFilter = normalizeString(filters.title);
+            filtered = filtered.filter(p => normalizeString(p.title).includes(titleFilter));
         }
-        if (filters.city) filtered = filtered.filter(p => p.location.city.toLowerCase().includes(filters.city.toLowerCase()));
-        if (filters.state) filtered = filtered.filter(p => p.location.state.toLowerCase().includes(filters.state.toLowerCase()));
-        if (filters.type) filtered = filtered.filter(p => p.type.toLowerCase() === filters.type.toLowerCase());
+
+        if (filters.city) {
+            const cityFilter = normalizeString(filters.city);
+            filtered = filtered.filter(p => normalizeString(p.location.city).includes(cityFilter));
+        }
+
+        if (filters.state) {
+            const stateFilter = normalizeString(filters.state);
+            filtered = filtered.filter(p => normalizeString(p.location.state).includes(stateFilter));
+        }
+
+        if (filters.type) {
+            const typeFilter = normalizeString(filters.type);
+            filtered = filtered.filter(p => normalizeString(p.type) === typeFilter);
+        }
+
         if (filters.price) {
             const [min, max] = filters.price.split("-").map(Number);
             if (!isNaN(min)) filtered = filtered.filter(p => p.pricePerNight >= min);
             if (!isNaN(max)) filtered = filtered.filter(p => p.pricePerNight <= max);
         }
+
         if (filters.guests) filtered = filtered.filter(p => p.maxGuests >= Number(filters.guests));
         if (filters.bedrooms) filtered = filtered.filter(p => p.bedrooms >= Number(filters.bedrooms));
+
         if (filters.amenities) {
-            const amenitiesArray = filters.amenities.toLowerCase().split(",").map(a => a.trim());
-            filtered = filtered.filter(p => amenitiesArray.every(a => p.amenities.map(am => am.toLowerCase()).includes(a)));
+            const amenitiesArray = filters.amenities.split(",").map(a => normalizeString(a.trim()));
+            filtered = filtered.filter(p =>
+            amenitiesArray.every(a => p.amenities.map(am => normalizeString(am)).includes(a))
+            );
         }
+
         if (filters.available) filtered = filtered.filter(p => p.isAvailable);
 
         setFilteredProperties(filtered);

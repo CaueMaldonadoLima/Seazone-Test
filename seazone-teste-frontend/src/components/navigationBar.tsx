@@ -58,7 +58,7 @@ export default function NavigationBar({ filters, setFilters, onApplyFilters, onC
                                     Limpar Filtros
                                 </Button>
                                 <DialogClose asChild>
-                                    <Button variant="default" onClick={onApplyFilters} className="h-10 px-6 rounded-full">
+                                    <Button variant="default" onClick={onApplyFilters} className="h-10 px-6 rounded-full text-white">
                                         Aplicar Filtros
                                     </Button>
                                 </DialogClose>
