@@ -1,4 +1,4 @@
-cd# Projeto Imóveis – Desafio Frontend
+# Projeto Imóveis – Desafio Frontend
 ## Descrição
 Este projeto é uma aplicação de listagem e visualização de imóveis, construída com **Next.js**, **React** e outras tecnologias modernas de frontend.  
 A aplicação permite filtrar propriedades por diversos critérios e visualizar detalhes de cada imóvel.
@@ -9,15 +9,15 @@ A aplicação permite filtrar propriedades por diversos critérios e visualizar 
 ```bash
 git clone https://github.com/CaueMaldonadoLima/Seazone-Test.git
 ```
-2.Entre na pasta do projeto:
+2. Entre na pasta do projeto:
 ```bash
 cd .\Seazone-Test\seazone-teste-frontend\
 ```
-3.Instale as dependências:
+3. Instale as dependências:
 ```bash
 npm install
 ```
-4.Inicie a aplicação:
+4. Inicie a aplicação:
 ```bash
 npm run dev
 ```
