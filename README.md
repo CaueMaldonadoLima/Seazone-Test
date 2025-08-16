@@ -9,15 +9,15 @@ A aplicação permite filtrar propriedades por diversos critérios e visualizar 
 ```bash
 git clone https://github.com/CaueMaldonadoLima/Seazone-Test.git
 ```
-2.Entre na pasta do projeto:
+2. Entre na pasta do projeto:
 ```bash
-cd /seazone-teste-frontend
+cd .\Seazone-Test\seazone-teste-frontend\
 ```
-3.Instale as dependências:
+3. Instale as dependências:
 ```bash
 npm install
 ```
-4.Inicie a aplicação:
+4. Inicie a aplicação:
 ```bash
 npm run dev
 ```
