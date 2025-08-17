@@ -13,10 +13,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Stars } from '../starsRating';
 import { formatHostSince } from '../hostingDate';
 import { BadgeCheck, BadgeX, BedDouble, CircleDollarSign, PersonStanding, Ruler, Toilet } from 'lucide-react';
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Button } from '../ui/button';
-import { toast } from 'sonner';
-
+import Property from '@/app/properties/[id]/page';
+import PropertyBookingDialog from './propertyBookingDialog';
 interface Property {
     id: number;
     title: string;
@@ -146,44 +145,7 @@ export default function PropertyPage({ property }: PropertyPageProps) {
                             <p className='px-4'>{property.host.superhost ? '(Superhost) · ' : ''} Hospedando há {formatHostSince(property.host.since)}</p>
                         </div>
                     </Card>
-                    <Button className='py-8 text-lg rounded-full active:scale-95 transition-transform shadow-lg hover:bg-primary/90 text-white'
-                        onClick={() =>
-                            toast.success("Reserva realizada com sucesso!", {
-                                description: "",
-                                action: {
-                                    label: "Fechar",
-                                    onClick: () => console.log("Fechar"),
-                                },
-                                
-                            })
-                        }
-                    >Simular reserva</Button>
-                    {/* <Dialog>
-                        <DialogTrigger className='w-full rounded-full bg-primary text-lg shadow-lg text-white font-semibold py-4 active:scale-95 transition-transform hover:bg-primary/90 cursor-pointer'>
-                            Simular Reserva
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Reserva </DialogTitle>
-                            </DialogHeader>
-                            <div>
-                                <p className='text-lg'></p>
-                                <p className='text-sm text-gray-500'>Você pode enviar uma mensagem diretamente para o anfitrião através do botão abaixo.</p>
-                            </div>
-                            <div className="w-full flex items-center justify-center gap-2">
-                                <DialogClose asChild>
-                                    <Button variant="secondary" className="h-10 px-6 rounded-full ml-2">
-                                        Cancelar
-                                    </Button>
-                                </DialogClose>
-                                <DialogClose asChild>
-                                    <Button variant="default" className="h-10 px-6 rounded-full text-white">
-                                        Aplicar 
-                                    </Button>
-                                </DialogClose>
-                            </div>
-                        </DialogContent>
-                    </Dialog> */}
+                    <PropertyBookingDialog propertyId={property.id} />
                 </div>
             </div>
 		</main>
