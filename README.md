@@ -56,7 +56,6 @@ A aplicação estará disponível em http://localhost:3000.
 - Adicionar autenticação de usuário.  
 - Implementar filtros avançados com múltiplos critérios combinados.  
 - Adicionar testes unitários e de integração com Cypress.  
-- Otimização de imagens e carregamento lazy-loading.  
 - Adicionar gráficos de visualização de imóveis mais populares.
 
 ## Tecnologias Utilizadas
